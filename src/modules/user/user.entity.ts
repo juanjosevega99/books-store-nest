@@ -1,4 +1,5 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne } from "typeorm";
+import { UserDetails } from "./user.details.entity";
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -13,6 +14,8 @@ export class User extends BaseEntity {
   
   @Column({ type: 'varchar', nullable: false })
   password: string
+
+  @OneToOne(type => UserDetails, { cascade: true, nullable: false, eager: true })details: UserDetails
   
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
   status: string
