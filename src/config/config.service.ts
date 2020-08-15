@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import { registerAs } from '@nestjs/config'
+import { parse } from 'dotenv'
 
 export class ConfigService {
   private readonly envConfig: { [key: string]: string }
@@ -16,7 +16,7 @@ export class ConfigService {
         process.exit(0)
       }    
 
-      this.envConfig = registerAs.arguments(fs.readFileSync(envFilePath))
+      this.envConfig = parse(fs.readFileSync(envFilePath))
     } else {
       this.envConfig = {
         PORT: process.env.PORT,
