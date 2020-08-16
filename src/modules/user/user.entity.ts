@@ -1,35 +1,51 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToMany, JoinColumn, JoinTable } from "typeorm";
-import { UserDetails } from "./user.details.entity";
-import { Role } from "../role/role.entity";
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  ManyToMany,
+  JoinColumn,
+  JoinTable,
+} from 'typeorm';
+import { UserDetails } from './user.details.entity';
+import { Role } from '../role/role.entity';
 
 @Entity('users')
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
-  id: number
+  id: number;
 
   @Column({ type: 'varchar', unique: true, length: 25, nullable: false })
-  username: string
+  username: string;
 
   @Column({ type: 'varchar', nullable: false })
-  email: string
-  
-  @Column({ type: 'varchar', nullable: false })
-  password: string
+  email: string;
 
-  @OneToOne(type => UserDetails, { cascade: true, nullable: false, eager: true })
+  @Column({ type: 'varchar', nullable: false })
+  password: string;
+
+  @OneToOne(type => UserDetails, {
+    cascade: true,
+    nullable: false,
+    eager: true,
+  })
   @JoinColumn({ name: 'detail_id' })
-  details: UserDetails
-  
-  @ManyToMany(type => Role, role => role.users)
+  details: UserDetails;
+
+  @ManyToMany(
+    type => Role,
+    role => role.users,
+  )
   @JoinTable({ name: 'user_roles' })
-  roles: Role[]
+  roles: Role[];
 
   @Column({ type: 'varchar', default: 'ACTIVE', length: 8 })
-  status: string
-  
+  status: string;
+
   @Column({ type: 'timestamp', name: 'created_at' })
-  createdAt: Date
-  
+  createdAt: Date;
+
   @Column({ type: 'timestamp', name: 'updated_at' })
-  updatedAt: Date
+  updatedAt: Date;
 }
