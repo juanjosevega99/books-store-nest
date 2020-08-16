@@ -13,8 +13,9 @@ export const databaseProviders = [
         // ssl: true,
         type: 'postgres' as 'postgres',
         host: config.get(Configuration.HOST),
-        port: 5444,
         username: config.get(Configuration.USERNAME),
+        port: 5444,
+        database: config.get(Configuration.DATABASE),
         password: config.get(Configuration.PASSWORD),
         entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         migrations: [__dirname + '/migrations/*{.ts,.js}']
