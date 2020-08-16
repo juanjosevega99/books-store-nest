@@ -8,6 +8,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserDto } from './dto/user.dto';
 import { MapperService } from 'src/shared/mapper.service';
 import { User } from './user.entity';
+import { UserDetails } from './user.details.entity';
+import { getConnection } from 'typeorm';
+import { Role } from '../role/role.entity';
 
 @Injectable()
 export class UserService {
@@ -45,6 +48,13 @@ export class UserService {
   }
 
   async create(user: User) {
+    const details = new UserDetails();
+    user.details = details;
+
+    const repo = await getConnection().getRepository(Role);
+    const defaultRole = await repo.findOne({ where: { name: 'GENERAL' } });
+    user.roles = [defaultRole];
+
     const savedUser: User = await this._userRepository.save(user);
     return this._mapperService.map<User, UserDto>(savedUser, new UserDto());
   }
