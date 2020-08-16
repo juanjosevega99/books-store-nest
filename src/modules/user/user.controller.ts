@@ -7,7 +7,7 @@ import { UserDto } from './dto/user.dto';
 export class UserController {
   constructor(private readonly _userService: UserService) {}
 
-  @Get()
+  @Get(':id')
   async getUser(@Param() id: number): Promise<UserDto> {
     const user = await this._userService.getUser(id);
     return user;
@@ -21,17 +21,17 @@ export class UserController {
 
   @Post()
   async createUser(@Body() user: User): Promise<UserDto> {
-    const createdUser = await this.createUser(user);
+    const createdUser = await this._userService.create(user);
     return createdUser;
   }
 
-  @Patch()
-  async updateUser(@Param() id: number, @Body() user: User): Promise<UserDto> {
-    const createdUser = await this.createUser(user);
-    return createdUser;
+  @Patch(':id')
+  async updateUser(@Param() id: number, @Body() user: User) {
+    const createdUser = await this._userService.update(id, user);
+    return true;
   }
 
-  @Delete()
+  @Delete(':id')
   async deleteUser(@Param() id: number) {
     await this._userService.delete(id);
     return true;
