@@ -6,14 +6,12 @@ import {
 import { RoleRepository } from './role.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Role } from './role.entity';
-import { MapperService } from 'src/shared/mapper.service';
 
 @Injectable()
 export class RoleService {
   constructor(
     @InjectRepository(RoleRepository)
     private readonly _userRepository: RoleRepository,
-    private readonly _mapperService: MapperService,
   ) {}
 
   async getRole(id: number): Promise<Role> {
