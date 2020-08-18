@@ -59,11 +59,11 @@ export class UserService {
   }
 
   async delete(id: number): Promise<void> {
-    const userExists = await this._userRepository.findOne(id, {
+    const userExist = await this._userRepository.findOne(id, {
       where: { status: 'ACTIVE' },
     });
 
-    if (!userExists) {
+    if (!userExist) {
       throw new NotFoundException();
     }
 
