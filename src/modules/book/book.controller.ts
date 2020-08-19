@@ -10,7 +10,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { BookService } from './book.service';
-import { ReadBookDto, CreateBookDto } from './dtos';
+import { ReadBookDto, CreateBookDto, UpdateBookDto } from './dtos';
 import { Roles } from '../role/decorators/role.decorator';
 import { RoleType } from '../role/roletype.enum';
 import { AuthGuard } from '@nestjs/passport';
@@ -59,7 +59,7 @@ export class BookController {
   @Patch(':id')
   updateBook(
     @Param('id', ParseIntPipe) id: number,
-    @Body() role: Partial<CreateRoleDto>,
+    @Body() role: Partial<UpdateBookDto>,
     @GetUser('id') authorId: number,
   ) {
     return this._bookService.update(id, role, authorId);
