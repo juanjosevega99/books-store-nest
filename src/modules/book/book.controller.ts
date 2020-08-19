@@ -15,7 +15,6 @@ import { Roles } from '../role/decorators/role.decorator';
 import { RoleType } from '../role/roletype.enum';
 import { AuthGuard } from '@nestjs/passport';
 import { RoleGuard } from '../role/guards/role.guard';
-import { Book } from './book.entity';
 import { CreateRoleDto } from '../dtos';
 import { GetUser } from '../auth/user.decorator';
 
