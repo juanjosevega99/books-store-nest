@@ -50,7 +50,7 @@ export class BookController {
   @UseGuards(AuthGuard(), RoleGuard)
   @Post()
   createBookByaAuthor(
-    @Body() role: Partial<CreateRoleDto>,
+    @Body() role: Partial<CreateBookDto>,
     @GetUser('id') authorId: number,
   ): Promise<ReadBookDto> {
     return this._bookService.createByAuthor(role, authorId);
