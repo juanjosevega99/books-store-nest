@@ -97,7 +97,7 @@ export class BookService {
     return plainToClass(ReadBookDto, savedBook);
   }
 
-  async createByAuthor(book: Partial<CreateRoleDto>, authorId: number) {
+  async createByAuthor(book: Partial<CreateBookDto>, authorId: number) {
     const author = await this._userRepository.findOne(authorId, {
       where: { status: status.INACTIVE },
     });
