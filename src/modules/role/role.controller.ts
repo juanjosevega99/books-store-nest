@@ -9,7 +9,6 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { RoleService } from './role.service';
-import { Role } from './role.entity';
 import { ReadRoleDto, CreateRoleDto, UpdateRoleDto } from '../dtos';
 
 @Controller('roles')
