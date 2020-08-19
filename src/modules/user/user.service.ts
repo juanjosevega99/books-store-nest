@@ -6,9 +6,6 @@ import {
 import { UserRepository } from './user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
-import { UserDetails } from './user.details.entity';
-import { getConnection } from 'typeorm';
-import { Role } from '../role/role.entity';
 import { RoleRepository } from '../role/role.repository';
 import { status } from '../../shared/entity-status.num';
 import { ReadUserDto, UpdateUserDto } from './dto';
