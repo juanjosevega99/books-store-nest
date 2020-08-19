@@ -15,7 +15,6 @@ import { In } from 'typeorm';
 import { User } from '../user/user.entity';
 import { Role } from '../role/role.entity';
 import { RoleType } from '../role/roletype.enum';
-import { CreateRoleDto } from '../dtos';
 
 @Injectable()
 export class BookService {
